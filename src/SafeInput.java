@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class SafeInput {
+public class SafeInput
+{
     /**
      * @param pipe   a Scanner opened to read from System.in
      * @param prompt prompt for the user
@@ -9,7 +10,8 @@ public class SafeInput {
     public static String getNonZeroLengthString(Scanner pipe, String prompt)
     {
         String retString = "";  // Set this to zero length. Loop runs until it isn’t
-        do {
+        do
+        {
             System.out.print(prompt + ": "); // show prompt add space
             retString = pipe.nextLine();
         } while (retString.length() == 0);
@@ -18,6 +20,161 @@ public class SafeInput {
 
     }
 
+
+    /**
+     * Prompts the user to input an integer
+     * @param pipe
+     * @param prompt Prompts the user to input
+     * @return
+     */
+    public static int getInt(Scanner pipe, String prompt)
+    {
+        int retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do
+        {
+            System.out.print(prompt + " : ");
+            if (pipe.hasNextInt())
+            {
+                retVal = pipe.nextInt();
+                pipe.nextLine();
+                System.out.println("\nYou said your favorite ret val is " + retVal + ".");
+                done = true;
+
+            }
+            else
+            {
+                trash = pipe.nextLine();
+                System.out.println("\nYou must enter a valid integer, not " + trash + ".");
+            }
+        }while(!done);
+
+        return retVal;
+    }
+
+
+    /**
+     *
+     * @param pipe Scanner instance to use for the console input
+     * @param prompt String that tells the user what to input
+     * @param low Lower bound for the range of valid numbers
+     * @param high Higher bound for the range of valid numbers
+     * @return Integer within the range
+     */
+    public static int getRangedInt(Scanner pipe, String prompt, int low, int high)
+    {
+        int retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do
+        {
+
+            System.out.print(prompt + "[" + low  + "-" + high + "] : ");
+            if(pipe.hasNextInt())
+            {
+                retVal = pipe.nextInt();
+                pipe.nextLine();
+                if(retVal >= low && retVal <= high)
+                {
+                    System.out.println("\nYou said your ret Val is " + retVal + ".");
+                    done = true;
+                }
+                else
+                {
+                    System.out.println("You said your ret Val is " + retVal + "but that is not in the correct range. ");
+                }
+            }
+            else
+            {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid integer, not " + trash);
+            }
+        }while(!done);
+
+        return retVal;
+    }
+
+
+    /**
+     * Return a user supplied double
+     *
+     * @param pipe Scanner used for the console input
+     * @param prompt String that asks the user to input an integer
+     * @return An arbitrary double within the range
+     */
+    public static double getDouble(Scanner pipe, String prompt)
+    {
+        double retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do
+        {
+
+            System.out.print(prompt + " : ");
+            if(pipe.hasNextDouble())
+            {
+                retVal = pipe.nextDouble();
+                pipe.nextLine();
+                System.out.println("\nYou said your ret Val is " + retVal + ".");
+                done = true;
+            }
+            else
+            {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid integer not " + trash);
+            }
+        }while(!done);
+
+        return retVal;
+    }
+
+
+    /**
+     * Returns a user's supplied double within the range
+     *
+     * @param pipe
+     * @param prompt String that asks the user to enter a double
+     * @param low The lower bound for the range of valid integers
+     * @param high The higher bound for the range of valid integers
+     * @return An arbitrary double within the range
+     */
+    public static double getRangeDouble(Scanner pipe, String prompt, double low, double high)
+    {
+        double retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do
+        {
+
+            System.out.print(prompt + "[" + low + "-" + high + "] : " );
+            if(pipe.hasNextDouble())
+            {
+                retVal = pipe.nextDouble();
+                pipe.nextLine();
+                if(retVal >= low && retVal <= high)
+                {
+                    System.out.println("\nYou said your ret Val is " + retVal + ".");
+                    done = true;
+                }
+                else
+                {
+                    System.out.println("You said your ret Val is " + retVal + "but that is not within the correct range");
+                }
+            }
+            else
+            {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid integer, not " + trash + ".");
+            }
+        }while(!done);
+
+        return retVal;
+    }
 }
 
 
