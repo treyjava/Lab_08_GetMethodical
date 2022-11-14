@@ -40,7 +40,7 @@ public class SafeInput
             {
                 retVal = pipe.nextInt();
                 pipe.nextLine();
-                System.out.println("\nYou said your favorite ret val is " + retVal + ".");
+                System.out.println("\nYou said your integer is " + retVal + ".");
                 done = true;
 
             }
@@ -71,7 +71,6 @@ public class SafeInput
 
         do
         {
-
             System.out.print(prompt + "[" + low  + "-" + high + "] : ");
             if(pipe.hasNextInt())
             {
@@ -79,12 +78,12 @@ public class SafeInput
                 pipe.nextLine();
                 if(retVal >= low && retVal <= high)
                 {
-                    System.out.println("\nYou said your ret Val is " + retVal + ".");
+                    System.out.println("\nYou said your integer is " + retVal + ".");
                     done = true;
                 }
                 else
                 {
-                    System.out.println("You said your ret Val is " + retVal + "but that is not in the correct range. ");
+                    System.out.println("You said your integer is " + retVal + "but that is not in the correct range. ");
                 }
             }
             else
@@ -113,19 +112,18 @@ public class SafeInput
 
         do
         {
-
             System.out.print(prompt + " : ");
             if(pipe.hasNextDouble())
             {
                 retVal = pipe.nextDouble();
                 pipe.nextLine();
-                System.out.println("\nYou said your ret Val is " + retVal + ".");
+                System.out.println("\nYou said your double is " + retVal + ".");
                 done = true;
             }
             else
             {
                 trash = pipe.nextLine();
-                System.out.println("You must enter a valid integer not " + trash);
+                System.out.println("You must enter a valid double not " + trash);
             }
         }while(!done);
 
@@ -150,7 +148,6 @@ public class SafeInput
 
         do
         {
-
             System.out.print(prompt + "[" + low + "-" + high + "] : " );
             if(pipe.hasNextDouble())
             {
@@ -158,18 +155,56 @@ public class SafeInput
                 pipe.nextLine();
                 if(retVal >= low && retVal <= high)
                 {
-                    System.out.println("\nYou said your ret Val is " + retVal + ".");
+                    System.out.println("\nYou said your double is " + retVal + ".");
                     done = true;
                 }
                 else
                 {
-                    System.out.println("You said your ret Val is " + retVal + "but that is not within the correct range");
+                    System.out.println("You said your double is " + retVal + "but that is not within the correct range");
                 }
             }
             else
             {
                 trash = pipe.nextLine();
                 System.out.println("You must enter a valid integer, not " + trash + ".");
+            }
+        }while(!done);
+
+        return retVal;
+    }
+
+
+    /**
+     * Takes Y or N and returns true or false
+     *
+     * @param pipe Scanner for console input
+     * @param prompt String indicating what to input
+     * @return Boolean true of false based on Y or N
+     */
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        boolean retVal = false;
+        boolean done = false;
+        String inputYN = "";
+        String trash = "";
+
+        do
+        {
+            System.out.print(prompt + " [Y/N]: ");
+            inputYN = pipe.nextLine();
+            if(inputYN.equalsIgnoreCase("Y"))
+            {
+                retVal = true;
+                done = true;
+            }
+            else if(inputYN.equalsIgnoreCase("N"))
+            {
+                done = true;
+                retVal = false;
+            }
+            else
+            {
+                System.out.println("You must enter Y or N. ");
             }
         }while(!done);
 
