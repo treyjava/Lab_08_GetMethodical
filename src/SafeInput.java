@@ -83,7 +83,7 @@ public class SafeInput
                 }
                 else
                 {
-                    System.out.println("You said your integer is " + retVal + "but that is not in the correct range. ");
+                    System.out.println("You said your integer is " + retVal + " but that is not in the correct range. ");
                 }
             }
             else
@@ -160,7 +160,7 @@ public class SafeInput
                 }
                 else
                 {
-                    System.out.println("You said your double is " + retVal + "but that is not within the correct range");
+                    System.out.println("You said your double is " + retVal + ", but that is not within the correct range");
                 }
             }
             else
@@ -205,12 +205,71 @@ public class SafeInput
             else
             {
                 System.out.println("You must enter Y or N. ");
+                done = false;
             }
         }while(!done);
 
         return retVal;
     }
+    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    {
+        String retVal = "";
+        boolean done = false;
+
+        do
+        {
+            System.out.print("\n" + prompt + ": ");
+            retVal = pipe.nextLine();
+            if(retVal.matches(regEx))
+            {
+                done = true;
+            }
+            else
+            {
+                System.out.println("\n" + retVal + " must match the pattern " + regEx);
+            }
+        }while (!done);
+
+        return retVal;
+    }
+    public static void prettyHeader(String msg) {
+        int starCount = 60;
+
+        for (int c = 0; c < starCount; c++)
+        {
+            System.out.print("*");
+        }
+        System.out.println();
+        int starsLeft = (60 - msg.length()) / 2;
+        int spaces = starsLeft - 3;
+        System.out.print("***");
+
+        for (int c = 0; c < spaces; c++)
+        {
+            System.out.print(" ");
+        }
+        System.out.print(msg);
+        if (msg.length() % 2 == 0 )    // test to see if it is even so if this is true then it's even
+        {
+            for (int c = 0; c < spaces; c++)
+            {
+                System.out.print(" ");
+            }
+        }
+        else
+        {
+            for (int c = 0; c <= spaces; c++)
+            {
+                System.out.print(" ");
+            }
+        }
+
+        System.out.println("***");
+
+        for (int c = 0; c < starCount; c++)
+        {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
 }
-
-
-
